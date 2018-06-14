@@ -99,24 +99,31 @@
 
 
 
-  <meta name="description" content="使用github pages搭个博客">
-<meta name="keywords" content="blog">
+  <meta name="description" content="前面讲了Apriori关联分析算法，提到Apriori就不能不提FP-Growth。今天我们就来看下FP-Growth的原理。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建github pages">
-<meta property="og:url" content="http://blog.alongwith.me/2018/03/26/搭建github-pages/index.html">
+<meta property="og:title" content="FP-Growth关联分析算法">
+<meta property="og:url" content="http://blog.alongwith.me/2018/06/14/FP-Growth algrithm/index.html">
 <meta property="og:site_name" content="cd&#39;s blogs">
-<meta property="og:description" content="使用github pages搭个博客">
-<meta property="og:updated_time" content="2018-04-08T05:46:35.000Z">
+<meta property="og:description" content="前面讲了Apriori关联分析算法，提到Apriori就不能不提FP-Growth。今天我们就来看下FP-Growth的原理。">
+<meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528893140/blog/b4_img_1.png">
+<meta property="og:image" content="http://res.cloudinary.com/crackdawn/image/upload/v1528940924/blog/b4_img_2.png">
+<meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528941805/blog/b4_img_3.png">
+<meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528942984/blog/b4_img_4.png">
+<meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528884448/blog/b4_img_0.png">
+<meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528964407/blog/b4_img_5.png">
+<meta property="og:updated_time" content="2018-06-14T09:18:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建github pages">
-<meta name="twitter:description" content="使用github pages搭个博客">
+<meta name="twitter:title" content="FP-Growth关联分析算法">
+<meta name="twitter:description" content="前面讲了Apriori关联分析算法，提到Apriori就不能不提FP-Growth。今天我们就来看下FP-Growth的原理。">
+<meta name="twitter:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528893140/blog/b4_img_1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.alongwith.me/2018/03/26/搭建github-pages/"/>
+  <link rel="canonical" href="http://blog.alongwith.me/2018/06/14/FP-Growth algrithm/"/>
 
 
 
@@ -126,7 +133,7 @@
   };
 </script>
 
-  <title>搭建github pages | cd's blogs</title>
+  <title>FP-Growth关联分析算法 | cd's blogs</title>
   
 
 
@@ -302,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.alongwith.me/2018/03/26/搭建github-pages/">
+    <link itemprop="mainEntityOfPage" href="http://blog.alongwith.me/2018/06/14/FP-Growth algrithm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thecrackdawn">
@@ -319,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建github pages</h1>
+          <h1 class="post-title" itemprop="name headline">FP-Growth关联分析算法</h1>
         
 
         <div class="post-meta">
@@ -331,7 +338,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-26T10:17:15+08:00">2018-03-26</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-14T17:17:00+08:00">2018-06-14</time>
             
 
             
@@ -352,7 +359,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据挖掘/" itemprop="url" rel="index"><span itemprop="name">数据挖掘</span></a></span>
 
                 
                 
@@ -386,45 +393,280 @@
       
 
       
-        <p>使用github pages搭个博客<br><a id="more"></a></p>
-<h2 id="选择博客"><a href="#选择博客" class="headerlink" title="选择博客"></a>选择博客</h2><p>对博客的页面自己没有太多的需求，能分类和分标签显示是其中一个比较重要的需求。试了下Jekyll的默认主题minima要支持分类的话需要自动改动下模版。就在自己打算改改模版的时候无意中发现了基于<a href="https://hexo.io/" target="_blank" rel="noopener">hexo</a>的<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NexT</a>主题，这个主题很是符合自己对博客的需求。惰性使然，转战hexo。</p>
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>参考官方的<a href="https://hexo.io/docs/index.html" target="_blank" rel="noopener">文档</a></p>
-<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p>写这篇博客的时候，NexT正处在项目迁移的过程中。故而github上面有两个项目地址（<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">老的项目地址</a>）。老的项目中的文档有写如何添加分类和标签。其它的比如博客的图标和标题这类的修改就不赘述了。主要是修改主题的_config.yml。</p>
-<h2 id="部署到github-pages"><a href="#部署到github-pages" class="headerlink" title="部署到github pages"></a>部署到github pages</h2><p>可直接参考此处<a href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39" target="_blank" rel="noopener">文档</a>    </p>
-<ol>
-<li><p>安装相关的 <a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">部署插件</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置插件<br>编辑_confg.yml文件，相应的修改如下配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br><span class="line">  message: [message]</span><br><span class="line">  name: [git user]</span><br><span class="line">  email: [git email]</span><br><span class="line">  ignore_hidden: false # default is true</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部署</p>
-<p> 另起一个shell来监控文件的修改</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>hexo generate --watch</span><br></pre></td></tr></table></figure>
-<p> 然后编写或者修改blog，完成后便可以部署。</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自定义域名<br>  在source目录下新建一个名为CNAME的文件，编辑文件，写入你想绑定的域名。</p>
-  <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">customdomain.<span class="keyword">com</span></span><br></pre></td></tr></table></figure>
-<p>  编辑_config.yml文件</p>
-  <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip_render: CNAME</span><br></pre></td></tr></table></figure>
-<p> 清除下缓存<code>hexo clean</code><br> 重新deploy</p>
-</li>
-<li><p>启用https<br> 目前github pages本身仍<a href="https://github.com/isaacs/github/issues/156" target="_blank" rel="noopener">无法很好的支持https</a>。<br> 这里提供一个<a href="https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/" target="_blank" rel="noopener">workaround</a>。</p>
-</li>
-<li><p>添加搜索引擎</p>
-<ol>
-<li><p>添加google webmaster<br> 首先添加自己的网站，添加后有若干验证网站所有权的方法，这里采用推荐的方法——验证html文件。下载html文件，并将拷贝到hexo下的source目录下。</p>
-</li>
-<li><p>添加baidu搜索<br> 注册账号添加网站后，也选择通过文件来验证。操作方法和添加google一样。因为百度验证文件含有下划线，github pages默认使用Jekyll生成器，会忽略带有下划线的文件。所以我们在新建一个叫.nojekyll的空文件来禁用Jekyll。</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd .deploy_git</span><br><span class="line"><span class="meta">$</span> touch .nojekyll</span><br><span class="line"><span class="meta">$</span> git add .nojekyll</span><br><span class="line"><span class="meta">$</span> git commit -m "forbid jekyll"</span><br><span class="line"><span class="meta">$</span> git push</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改配置文件<br>编辑_config.yml文件</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">skip_render:</span><br><span class="line"> - CNAME</span><br><span class="line"> - googlebac3b883ec177d92.html</span><br><span class="line"> - baidu_verify_ZlUgoHo270.html</span><br></pre></td></tr></table></figure>
-<p>清除下缓存<code>hexo clean</code><br>重新deploy</p>
-</li>
-</ol>
-</li>
+        <p>前面讲了<a href="https://blog.alongwith.me/2018/05/31/apriori%20algorithm/">Apriori</a>关联分析算法，提到Apriori就不能不提FP-Growth。今天我们就来看下FP-Growth的原理。</p>
+<a id="more"></a>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>这里仍使用Apriori中用到的数据集（《数据挖掘 实用机器学习工具与技术》中的天气数据集）。其它概念的性的定义也可以参考<a href="https://blog.alongwith.me/2018/05/31/apriori%20algorithm/">Apriori</a>里面的介绍。</p>
+<table>
+<thead>
+<tr>
+<th>outlook</th>
+<th>temperature</th>
+<th>humidity</th>
+<th>windy</th>
+<th>play</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sunny</td>
+<td>hot</td>
+<td>high</td>
+<td>false</td>
+<td>no</td>
+</tr>
+<tr>
+<td>sunny</td>
+<td>hot</td>
+<td>high</td>
+<td>true</td>
+<td>no</td>
+</tr>
+<tr>
+<td>overcast</td>
+<td>hot</td>
+<td>high</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>rainy</td>
+<td>mild</td>
+<td>high</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>rainy</td>
+<td>cool</td>
+<td>normal</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>rainy</td>
+<td>cool</td>
+<td>normal</td>
+<td>true</td>
+<td>no</td>
+</tr>
+<tr>
+<td>overcast</td>
+<td>cool</td>
+<td>normal</td>
+<td>true</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>sunny</td>
+<td>mild</td>
+<td>high</td>
+<td>false</td>
+<td>no</td>
+</tr>
+<tr>
+<td>sunny</td>
+<td>cool</td>
+<td>normal</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>rainy</td>
+<td>mild</td>
+<td>normal</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>sunny</td>
+<td>mild</td>
+<td>normal</td>
+<td>true</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>overcast</td>
+<td>mild</td>
+<td>high</td>
+<td>true</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>overcast</td>
+<td>hot</td>
+<td>normal</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>rainy</td>
+<td>mild</td>
+<td>high</td>
+<td>true</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2 id="FP-growth算法"><a href="#FP-growth算法" class="headerlink" title="FP-growth算法"></a>FP-growth算法</h2><h3 id="生成频繁项集"><a href="#生成频繁项集" class="headerlink" title="生成频繁项集"></a>生成频繁项集</h3><p>FP-growth算法首先计算属性值的频数，并过滤掉不符合覆盖量属性值，然后按频数从大到小进行排序。这里我们指定最小覆盖量为6。下表为计算后的结果：</p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>频数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>yes</strong></td>
+<td>9</td>
+</tr>
+<tr>
+<td><strong>false</strong></td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>high</strong></td>
+<td>7</td>
+</tr>
+<tr>
+<td><strong>normal</strong></td>
+<td>7</td>
+</tr>
+<tr>
+<td><strong>true</strong></td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>mild</strong></td>
+<td>6</td>
+</tr>
+<tr>
+<td><del>sunny</del></td>
+<td>5</td>
+</tr>
+<tr>
+<td><del>no</del></td>
+<td>5</td>
+</tr>
+<tr>
+<td><del>rainy</del></td>
+<td>5</td>
+</tr>
+<tr>
+<td><del>hot</del></td>
+<td>4</td>
+</tr>
+<tr>
+<td><del>overcast</del></td>
+<td>4</td>
+</tr>
+<tr>
+<td><del>cool</del></td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>对数据集第一次扫描完成后，需要对其进行第二次扫描，并在这个过程中建立树结构。树节点的插入顺序按照频数顺序插入，频数高的属性值优先插入树中，这可以让多个实例共享频繁出现的项。我们还是使用具体的例子来解释这个过程。</p>
+<p>指定最小覆盖量为6后，我们给满足条件的样本建立FP树。对第一个样本，</p>
+<table>
+<thead>
+<tr>
+<th>outlook</th>
+<th>temperature</th>
+<th>humidity</th>
+<th>windy</th>
+<th>play</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sunny</td>
+<td>hot</td>
+<td>high</td>
+<td>false</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>第一个样本中false和high满足指定最小的覆盖量，且根据我们上面的统计false出现的频数要大于high。所以我们首先将false插入到root节点后面，然后再将high插入到false后面。结果如下图所示。<br><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528893140/blog/b4_img_1.png" alt="fpgt1"></p>
+<p>树中每个节点记录着节点对应的属性值，以及从root节点开始（不包含root节点）沿箭头方向遍历到此节点组成的N项集的频数。例如，(‘false’,1)代表着(‘false’)这个一项集出现了1次。(‘high’,1)代表着(‘false’, ‘high’)这个二项集出现了1次。FP树的左边是头部链表(虚线箭头组成的链表)，其将具有相同属性值的节点链接起来。</p>
+<p>接着，我们将第二个样本插入到树中。</p>
+<table>
+<thead>
+<tr>
+<th>outlook</th>
+<th>temperature</th>
+<th>humidity</th>
+<th>windy</th>
+<th>play</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sunny</td>
+<td>hot</td>
+<td>high</td>
+<td>true</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>同样的，我们先对第二个样本中满足指定覆盖量的属性值按频数排序，即high, true。并按照顺序将其插入树中。</p>
+<p><img src="http://res.cloudinary.com/crackdawn/image/upload/v1528940924/blog/b4_img_2.png" alt="fpgt2"></p>
+<p>接着是第三个样本，</p>
+<table>
+<thead>
+<tr>
+<th>outlook</th>
+<th>temperature</th>
+<th>humidity</th>
+<th>windy</th>
+<th>play</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>overcast</td>
+<td>hot</td>
+<td>high</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528941805/blog/b4_img_3.png" alt="fpgt3"></p>
+<p>第四个样本，</p>
+<table>
+<thead>
+<tr>
+<th>outlook</th>
+<th>temperature</th>
+<th>humidity</th>
+<th>windy</th>
+<th>play</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rainy</td>
+<td>mild</td>
+<td>high</td>
+<td>false</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>这里满足指定覆盖量的属性值按频数排序后是yes, false, high, mild。同样，我们先插入yes节点。因为已经存在从root指向yes的路径，所以，我们直接复用，只需要将yes节点的计数加1就好。插入第二节点也是一样，因为路径存在，只需要将false的计数加1。后续节点依次按照规则加入到树中。这就是为什么要按属性值频数排序，然后依次插入的原因，这样可以尽可能减少路径的重复，从而达到对树的压缩。</p>
+<p><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528942984/blog/b4_img_4.png" alt="fpgt4"></p>
+<p>最终我们建立的FP树如下图所示。</p>
+<p><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528884448/blog/b4_img_0.png" alt="fpgt round1"></p>
+<p>当FP树建立完成后，我们就可以进行频繁项集的挖掘。我们按照头部链表从底部向上依次遍历（实际上可以按照任意顺序对头部链表进行遍历）。首先，我们将mild加入频繁项集中，即{‘mild’}。我们建立一个由包含mild的样本建立的FP树，如下图所示。<br><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528964407/blog/b4_img_5.png" alt="fpgt5"><br>该FP树建立过程，不需要重新扫描数据集，而是根据上面包含mild的完整的FP树生成。首先我们根据头部链表找到所有包含mild的节点，然后只保留包含mild的分支。同时从mild节点向上传播计数，即每个节点的计数是它所有子节点的计数和。<br>遍历该FP树的头部链表，属性值的最大频数为4，不能达到我们指定的最小覆盖量6。所以{‘mild’}不可能再增大，即频繁项集不可能包含mild。如果新建立的FP树仍有若干属性值满足最小的频数要求，这里假设yes，和false满足要求，那么我们需要将yes和false依次加入到备选项集中，然后建立相应的FP树，这便形成了递归。</p>
+<h3 id="生成有效规则"><a href="#生成有效规则" class="headerlink" title="生成有效规则"></a>生成有效规则</h3><p>有效规则的生成和<a href="https://blog.alongwith.me/2018/05/31/apriori%20algorithm/">Apriori</a>相同。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>可以参考<a href="https://github.com/apachecn/MachineLearning/blob/master/src/py2.x/ML/12.FrequentPattemTree/fpGrowth.py" target="_blank" rel="noopener">Machine Learning in Action</a>。这里的实现跟本文提到的略有不同，主要体现在生成新的FP树上。<br>实际使用中可以用<a href="http://www.borgelt.net/fpgrowth.html" target="_blank" rel="noopener">Christian Borgelt</a>实现的算法。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
+<li>《数据挖掘 实用机器学习工具与技术》</li>
+<li><a href="http://ml.apachecn.org/mlia/" target="_blank" rel="noopener">Machine Learning in Action</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Apriori_algorithm" target="_blank" rel="noopener">wiki</a></li>
 </ol>
 
       
@@ -446,7 +688,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/blog/" rel="tag"># blog</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -459,15 +701,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/31/apriori algorithm/" rel="next" title="Apriori关联分析算法">
+                <i class="fa fa-chevron-left"></i> Apriori关联分析算法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/01/编写JEB的python脚本/" rel="prev" title="编写JEB的python脚本">
-                编写JEB的python脚本 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -619,7 +861,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择博客"><span class="nav-number">1.</span> <span class="nav-text">选择博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-number">2.</span> <span class="nav-text">配置环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置主题"><span class="nav-number">3.</span> <span class="nav-text">配置主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到github-pages"><span class="nav-number">4.</span> <span class="nav-text">部署到github pages</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集"><span class="nav-number">1.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FP-growth算法"><span class="nav-number">2.</span> <span class="nav-text">FP-growth算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成频繁项集"><span class="nav-number">2.1.</span> <span class="nav-text">生成频繁项集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成有效规则"><span class="nav-number">2.2.</span> <span class="nav-text">生成有效规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">4.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
             
 
           </div>
