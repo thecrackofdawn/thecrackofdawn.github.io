@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528942984/blog/b4_img_4.png">
 <meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528884448/blog/b4_img_0.png">
 <meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1528964407/blog/b4_img_5.png">
-<meta property="og:updated_time" content="2018-06-14T09:18:14.000Z">
+<meta property="og:updated_time" content="2018-06-14T09:27:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FP-Growth关联分析算法">
 <meta name="twitter:description" content="前面讲了Apriori关联分析算法，提到Apriori就不能不提FP-Growth。今天我们就来看下FP-Growth的原理。">
@@ -660,7 +660,7 @@
 <p><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528942984/blog/b4_img_4.png" alt="fpgt4"></p>
 <p>最终我们建立的FP树如下图所示。</p>
 <p><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528884448/blog/b4_img_0.png" alt="fpgt round1"></p>
-<p>当FP树建立完成后，我们就可以进行频繁项集的挖掘。我们按照头部链表从底部向上依次遍历（实际上可以按照任意顺序对头部链表进行遍历）。首先，我们将mild加入频繁项集中，即{‘mild’}。我们建立一个由包含mild的样本建立的FP树，如下图所示。<br><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528964407/blog/b4_img_5.png" alt="fpgt5"><br>该FP树建立过程，不需要重新扫描数据集，而是根据上面包含mild的完整的FP树生成。首先我们根据头部链表找到所有包含mild的节点，然后只保留包含mild的分支。同时从mild节点向上传播计数，即每个节点的计数是它所有子节点的计数和。<br>遍历该FP树的头部链表，属性值的最大频数为4，不能达到我们指定的最小覆盖量6。所以{‘mild’}不可能再增大，即频繁项集不可能包含mild。如果新建立的FP树仍有若干属性值满足最小的频数要求，这里假设yes，和false满足要求，那么我们需要将yes和false依次加入到备选项集中，然后建立相应的FP树，这便形成了递归。</p>
+<p>当FP树建立完成后，我们就可以进行频繁项集的挖掘。我们按照头部链表从底部向上依次遍历（实际上可以按照任意顺序对头部链表进行遍历）。首先，我们将mild加入频繁项集中，即{‘mild’}。我们建立一个由包含mild的样本建立的FP树，如下图所示。<br><img src="https://res.cloudinary.com/crackdawn/image/upload/v1528964407/blog/b4_img_5.png" alt="fpgt5"><br>该FP树建立过程，不需要重新扫描数据集，而是根据上面包含mild的完整的FP树生成。首先我们根据头部链表找到所有包含mild的节点，然后只保留包含mild的分支。同时从mild节点向上传播计数，即每个节点的计数是它所有子节点的计数和。<br>遍历该FP树的头部链表，属性值的最大频数为4，不能达到我们指定的最小覆盖量6。所以{‘mild’}不可能再增大，即频繁项集不可能包含mild。如果新建立的FP树仍有若干属性值满足最小的频数要求，这里假设yes和false满足要求，那么我们需要将yes和false依次加入到备选项集中，然后建立相应的FP树，这便形成了递归。</p>
 <h3 id="生成有效规则"><a href="#生成有效规则" class="headerlink" title="生成有效规则"></a>生成有效规则</h3><p>有效规则的生成和<a href="https://blog.alongwith.me/2018/05/31/apriori%20algorithm/">Apriori</a>相同。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>可以参考<a href="https://github.com/apachecn/MachineLearning/blob/master/src/py2.x/ML/12.FrequentPattemTree/fpGrowth.py" target="_blank" rel="noopener">Machine Learning in Action</a>。这里的实现跟本文提到的略有不同，主要体现在生成新的FP树上。<br>实际使用中可以用<a href="http://www.borgelt.net/fpgrowth.html" target="_blank" rel="noopener">Christian Borgelt</a>实现的算法。</p>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
@@ -710,6 +710,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/01/simplify/" rel="prev" title="通用反混淆器Simplify">
+                通用反混淆器Simplify <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -783,7 +787,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -825,7 +829,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
