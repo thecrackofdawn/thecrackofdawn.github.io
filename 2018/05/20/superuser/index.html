@@ -1,133 +1,53 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="">
+<html lang="">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.0.6',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.techfocus.top","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
   <meta name="description" content="谈到android root，我们自然会想到root管理工具，例如Superuser和Supersu。这里我们学习下Superuser的实现原理。">
-<meta name="keywords" content="superuser">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Superuser">
-<meta property="og:url" content="http://blog.alongwith.me/2018/05/20/superuser/index.html">
+<meta property="og:url" content="http://www.techfocus.top/2018/05/20/superuser/index.html">
 <meta property="og:site_name" content="cd&#39;s blogs">
 <meta property="og:description" content="谈到android root，我们自然会想到root管理工具，例如Superuser和Supersu。这里我们学习下Superuser的实现原理。">
+<meta property="og:locale">
 <meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1523869424/blog/b2_img_0.jpg">
 <meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1523933913/blog/b2_img_1.bmp">
 <meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1526814565/blog/b2_img_2.png">
 <meta property="og:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1526813434/blog/b2_img_3.png">
-<meta property="og:updated_time" content="2018-05-20T12:33:12.000Z">
+<meta property="article:published_time" content="2018-05-20T12:00:15.000Z">
+<meta property="article:modified_time" content="2018-05-20T12:33:12.000Z">
+<meta property="article:author" content="thecrackdawn">
+<meta property="article:tag" content="superuser">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Superuser">
-<meta name="twitter:description" content="谈到android root，我们自然会想到root管理工具，例如Superuser和Supersu。这里我们学习下Superuser的实现原理。">
 <meta name="twitter:image" content="https://res.cloudinary.com/crackdawn/image/upload/v1523869424/blog/b2_img_0.jpg">
 
+<link rel="canonical" href="http://www.techfocus.top/2018/05/20/superuser/">
 
 
-
-
-
-  <link rel="canonical" href="http://blog.alongwith.me/2018/05/20/superuser/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
   };
 </script>
 
@@ -137,250 +57,155 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83607748-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-83607748-1');
-</script>
-
-
-
-
 
 
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"> 
-
-<div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">cd's blogs</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cd's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
+
 <nav class="site-nav">
-  
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-          
-  <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-</li>
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
 
-      
-        
-        
-          
-  <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
-</li>
+  </li>
+        <li class="menu-item menu-item-categories">
 
-      
-        
-        
-          
-  <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
-</li>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
 
-      
-        
-        
-          
-  <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
-</li>
+  </li>
+        <li class="menu-item menu-item-tags">
 
-      
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
 
-      
-    </ul>
-  
+  </li>
+        <li class="menu-item menu-item-archives">
 
-  
-    
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
 
-  
-
-  
+  </li>
+  </ul>
 </nav>
 
 
-  
 
 
-
- </div>
+</div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
-          <div id="content" class="content">
+
+          <div class="content post posts-expand">
             
 
-  <div id="posts" class="posts-expand">
     
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.alongwith.me/2018/05/20/superuser/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://www.techfocus.top/2018/05/20/superuser/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="thecrackdawn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="cd's blogs">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Superuser</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          Superuser
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
+              <span class="post-meta-item-text">Posted on</span>
               
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-20T20:00:15+08:00">2018-05-20</time>
-            
 
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
-
-                
-                
-              
+              <time title="Created: 2018-05-20 20:00:15 / Modified: 20:33:12" itemprop="dateCreated datePublished" datetime="2018-05-20T20:00:15+08:00">2018-05-20</time>
             </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -388,17 +213,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+        <p>谈到android root，我们自然会想到root管理工具，例如Superuser和Supersu。这里我们学习下Superuser的实现原理。</p>
+<a id="more"></a>
 
-      
-        <p>谈到android root，我们自然会想到root管理工具，例如Superuser和Supersu。这里我们学习下Superuser的实现原理。<br><a id="more"></a></p>
-<p>Superuser是开源的，所以网上存在很多的版本，这里我们使用此<a href="https://github.com/phhusson/Superuser" target="_blank" rel="noopener">源码</a>。</p>
+<p>Superuser是开源的，所以网上存在很多的版本，这里我们使用此<a target="_blank" rel="noopener" href="https://github.com/phhusson/Superuser">源码</a>。</p>
 <h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>Note： 这里使用的项目大多都很长世间没有更新了，所以编译过程会遇到各种问题。</p>
 <ol>
-<li>配置编译环境<br> 安装 NDK 和 SDK Platform for API 19</li>
-<li><p>下载源码</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir /path/to/src</span><br><span class="line"><span class="meta">$</span> cd /path/to/src</span><br><span class="line"><span class="meta">$</span> git clone git://github.com/phhusson/Superuser</span><br><span class="line"><span class="meta">$</span> cd Superuser</span><br><span class="line"><span class="meta">$</span> git clone git://github.com/phhusson/Widgets</span><br></pre></td></tr></table></figure>
+<li><p>配置编译环境<br> 安装 NDK 和 SDK Platform for API 19</p>
 </li>
+<li><p>下载源码</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir /path/to/src</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /path/to/src</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> git://github.com/phhusson/Superuser</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> Superuser</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> git://github.com/phhusson/Widgets</span></span><br></pre></td></tr></table></figure></li>
 <li><p>编译su    </p>
 <ul>
 <li>确保<code>ndk-build</code>在PATH中或者通过<code>sudo find / -name ndk-build</code>找到<code>ndk-build</code>所在的位置。</li>
@@ -407,284 +231,184 @@
 </ul>
 </li>
 <li><p>编译superuser</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd /path/to/src/Superuser/Superuser</span><br><span class="line">$ ./gradlew assembleDebug</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;path&#x2F;to&#x2F;src&#x2F;Superuser&#x2F;Superuser</span><br><span class="line">$ .&#x2F;gradlew assembleDebug</span><br></pre></td></tr></table></figure>
 <p> Note:因为这里的gradle版本太老，如果JDK太新的话编译会出现错误。这里我用的是<code>openjdk version &quot;1.8.0_162&quot;</code>。</p>
 </li>
-<li><p>编译测试app<br> 这里的测试app使用此处<a href="https://github.com/Chainfire/libsuperuser" target="_blank" rel="noopener">源码</a>。下载源码，并使用android studio打开。如果遇到<code>Gradle sync failed: No service of type Factory&lt;LoggingManagerInternal&gt; available in ProjectScopeServices.</code>这个错误，参照<a href="https://issuetracker.google.com/issues/37115549" target="_blank" rel="noopener">此处</a>进行修改。我是通过将依赖<code>classpath &#39;com.github.dcendents:android-maven-gradle-plugin:1.3&#39;</code>改成<code>classpath &#39;com.github.dcendents:android-maven-gradle-plugin:1.4.1&#39;</code>解决的。</p>
+<li><p>编译测试app<br> 这里的测试app使用此处<a target="_blank" rel="noopener" href="https://github.com/Chainfire/libsuperuser">源码</a>。下载源码，并使用android studio打开。如果遇到<code>Gradle sync failed: No service of type Factory&lt;LoggingManagerInternal&gt; available in ProjectScopeServices.</code>这个错误，参照<a target="_blank" rel="noopener" href="https://issuetracker.google.com/issues/37115549">此处</a>进行修改。我是通过将依赖<code>classpath &#39;com.github.dcendents:android-maven-gradle-plugin:1.3&#39;</code>改成<code>classpath &#39;com.github.dcendents:android-maven-gradle-plugin:1.4.1&#39;</code>解决的。</p>
 <h2 id="安装superuser"><a href="#安装superuser" class="headerlink" title="安装superuser"></a>安装superuser</h2><p> 我们把所有我们后续需要的文件拷贝到一处。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cp /path/to/src/Superuser/Superuser/libs/x86/su ~/tmp</span><br><span class="line">$ cp /path/to/src/Superuser/Superuser/build/outputs/apk/Superuser-debug.apk ~/tmp</span><br><span class="line">$ cp /path/to/testapp/libsuperuser_example-debug.apk ~/tmp</span><br><span class="line">$ tree ~/tmp</span><br><span class="line">.</span><br><span class="line">├── libsuperuser_example-debug.apk</span><br><span class="line">├── su</span><br><span class="line">└── Superuser-debug.apk</span><br><span class="line"></span><br><span class="line">0 directories, 3 files</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cp &#x2F;path&#x2F;to&#x2F;src&#x2F;Superuser&#x2F;Superuser&#x2F;libs&#x2F;x86&#x2F;su ~&#x2F;tmp</span><br><span class="line">$ cp &#x2F;path&#x2F;to&#x2F;src&#x2F;Superuser&#x2F;Superuser&#x2F;build&#x2F;outputs&#x2F;apk&#x2F;Superuser-debug.apk ~&#x2F;tmp</span><br><span class="line">$ cp &#x2F;path&#x2F;to&#x2F;testapp&#x2F;libsuperuser_example-debug.apk ~&#x2F;tmp</span><br><span class="line">$ tree ~&#x2F;tmp</span><br><span class="line">.</span><br><span class="line">├── libsuperuser_example-debug.apk</span><br><span class="line">├── su</span><br><span class="line">└── Superuser-debug.apk</span><br><span class="line"></span><br><span class="line">0 directories, 3 files</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p> note: 我们使用x86的模拟器，所以要拷x86版本的su</p>
 <p> 后面的相关操作都会在模拟器上进行。首先我们启动模拟器，并将测试程序libsuperuser_example-debug.apk安装到模拟器上。</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ emulator -avd Nexus_5X_API_19 -writable-system</span><br></pre></td></tr></table></figure>
 <p> note: 使用-writable-system参数来启动模拟器，否则后面可能无法以读写模式重新挂载/system</p>
 <p> <img src="https://res.cloudinary.com/crackdawn/image/upload/v1523869424/blog/b2_img_0.jpg" alt="testapp"></p>
 <p> 可以发现测试app检测结果是当前手机并没有root。我们将superuser和su安装到模拟器上。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell mount -o rw,remount /system</span><br><span class="line">$ adb push ~/tmp/su /system/xbin/</span><br><span class="line">~/tmp/su: 1 file pushed. 26.8 MB/s (476204 bytes in 0.017s)</span><br><span class="line">$ adb shell chmod 06755 /system/xbin/su</span><br><span class="line">$ adb push ~/tmp/Superuser-debug.apk /system/app</span><br><span class="line">~/tmp/Superuser-debug.a.... 121.8 MB/s (1005843 bytes in 0.008s)</span><br><span class="line">$ adb shell /system/xbin/su --daemon</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell mount -o rw,remount &#x2F;system</span><br><span class="line">$ adb push ~&#x2F;tmp&#x2F;su &#x2F;system&#x2F;xbin&#x2F;</span><br><span class="line">~&#x2F;tmp&#x2F;su: 1 file pushed. 26.8 MB&#x2F;s (476204 bytes in 0.017s)</span><br><span class="line">$ adb shell chmod 06755 &#x2F;system&#x2F;xbin&#x2F;su</span><br><span class="line">$ adb push ~&#x2F;tmp&#x2F;Superuser-debug.apk &#x2F;system&#x2F;app</span><br><span class="line">~&#x2F;tmp&#x2F;Superuser-debug.a.... 121.8 MB&#x2F;s (1005843 bytes in 0.008s)</span><br><span class="line">$ adb shell &#x2F;system&#x2F;xbin&#x2F;su --daemon</span><br></pre></td></tr></table></figure>
 <p> /system/xbin/su的用户和组都是root，并且setuid和setgid，所以su可以被非root用户调用且以root权限运行。<br> 此时我们点击测试app右下方的刷新按钮，superuser会提示我们是否进行su授权，我们点击确定。</p>
 <p> <img src="https://res.cloudinary.com/crackdawn/image/upload/v1523933913/blog/b2_img_1.bmp" alt="testapproot"></p>
 </li>
 </ol>
 <h2 id="superuser实现"><a href="#superuser实现" class="headerlink" title="superuser实现"></a>superuser实现</h2><p>有了感官上上认识，下面我们就开始撸代码。首先上su在启用daemon情况下的简化流程图。这个流程图忽略了一些细节，只是把个人认为比较重要的部分画了出来。</p>
 <p><img src="https://res.cloudinary.com/crackdawn/image/upload/v1526814565/blog/b2_img_2.png" alt="flowpic"></p>
-<p>这里只描述在daemon模式下superuser的工作原理。在上面演示的过程中我们在shell中手动通过<code>adb shell /system/xbin/su --daemon</code>将su的daemon端启动起来。在实际的root手机中daemon是在手机启动时由系统自动启动起来的。Su Daemon启动起来之后会启动一个socket并等待Su Client的连接。在这个过程中有一个有趣的函数:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fork_zero_fucks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span> (pid) &#123;</span><br><span class="line">        <span class="comment">//in parent</span></span><br><span class="line">        <span class="keyword">int</span> status;</span><br><span class="line">        waitpid(pid, &amp;status, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> pid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//in child</span></span><br><span class="line">        <span class="keyword">if</span> (pid = fork())</span><br><span class="line">            <span class="comment">//in parent</span></span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//in child</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到这个函数的名字甚是不可描述，所以说不要惹程序员，否则你不知道我们会在代码里写什么😁。这里把作者当时的commit log贴上来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Submitting to POSIX C standard: fork_zero_fucks.</span><br><span class="line"></span><br><span class="line">For when you give zero fucks about the state of the child process.</span><br><span class="line">This version of fork understands you dont care about the child.</span><br><span class="line">deadbeat dad fork.</span><br></pre></td></tr></table></figure></p>
-<p>可以看出作者不关心子进程状态也不希望产生zombie进程，所以用了两次fork。关于zombie可以看下<a href="https://stackoverflow.com/questions/16078985/why-zombie-processes-exist" target="_blank" rel="noopener">这里</a>。</p>
-<p>当app通过<code>suResult = Shell.SU.run(new String[] {&quot;id&quot;, &quot;ls -l /&quot;});</code>来调用su的时候，最终会通过<code>Process process = Runtime.getRuntime().exec(shell, environment);</code>来启动su。其中shell是”su”。</p>
+<p>这里只描述在daemon模式下superuser的工作原理。在上面演示的过程中我们在shell中手动通过<code>adb shell /system/xbin/su --daemon</code>将su的daemon端启动起来。在实际的root手机中daemon是在手机启动时由系统自动启动起来的。Su Daemon启动起来之后会启动一个socket并等待Su Client的连接。在这个过程中有一个有趣的函数:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fork_zero_fucks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span> (pid) &#123;</span><br><span class="line">        <span class="comment">//in parent</span></span><br><span class="line">        <span class="keyword">int</span> status;</span><br><span class="line">        waitpid(pid, &amp;status, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> pid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//in child</span></span><br><span class="line">        <span class="keyword">if</span> (pid = fork())</span><br><span class="line">            <span class="comment">//in parent</span></span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//in child</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到这个函数的名字甚是不可描述，所以说不要惹程序员，否则你不知道我们会在代码里写什么😁。这里把作者当时的commit log贴上来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Submitting to POSIX C standard: fork_zero_fucks.</span><br><span class="line"></span><br><span class="line">For when you give zero fucks about the state of the child process.</span><br><span class="line">This version of fork understands you dont care about the child.</span><br><span class="line">deadbeat dad fork.</span><br></pre></td></tr></table></figure>
+<p>可以看出作者不关心子进程状态也不希望产生zombie进程，所以用了两次fork。关于zombie可以看下<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/16078985/why-zombie-processes-exist">这里</a>。</p>
+<p>当app通过<code>suResult = Shell.SU.run(new String[] &#123;&quot;id&quot;, &quot;ls -l /&quot;&#125;);</code>来调用su的时候，最终会通过<code>Process process = Runtime.getRuntime().exec(shell, environment);</code>来启动su。其中shell是”su”。</p>
 <p>此时su以client模式被调用。Su Client被启动后会去连接Su Daemon。连接后Client会向Daemon发送pid，uid，命令行参数等初始化信息，并等待Daemon的ack。Daemon收到Client发送过来的信息后，会发送ack给Client。然后Daemon和Client会把它们的STDIN和STDOUT打通，即Client的STDIN的输入会被转发到Daemon的STDIN，Daemon的STDOUT的输出会被转发到Client的STDOUT。然后Client等待Daemon发送exit code， 收到exit code后Client便会退出。因为Client和Daemon的STDIN和STDOUT已经被打通，后面用户输入命令的便会从这个通道交互。Client的任务基本就是这些。</p>
 <p>Daemon收到初始化信息后，便会fork一个进程。父亲进程会wait子进程，并将子进程的exit code发送给Client（前面说过Client在等待这个exit code）。子进程先初始化su_context，su_context结构如下所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">su_context</span> <span class="title">ctx</span> = &#123;</span></span><br><span class="line">        <span class="comment">//su调用者的相关信息</span></span><br><span class="line">        .from = &#123;</span><br><span class="line">            <span class="comment">//进程id</span></span><br><span class="line">            .pid = <span class="number">-1</span>,</span><br><span class="line">            <span class="comment">//用户id</span></span><br><span class="line">            .uid = <span class="number">0</span>,</span><br><span class="line">            <span class="comment">//执行程序的路径</span></span><br><span class="line">            .bin = <span class="string">""</span>,</span><br><span class="line">            <span class="comment">//传入的参数，从/proc/pid/cmdline获得</span></span><br><span class="line">            .args = <span class="string">""</span>,</span><br><span class="line">            <span class="comment">//用户名字</span></span><br><span class="line">            .name = <span class="string">""</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//目标调用者</span></span><br><span class="line">        .to = &#123;</span><br><span class="line">            .uid = AID_ROOT,</span><br><span class="line">            .login = <span class="number">0</span>,</span><br><span class="line">            .keepenv = <span class="number">0</span>,</span><br><span class="line">            <span class="comment">//通过哪个shell执行用户命令，默认是"/system/bin/sh"</span></span><br><span class="line">            .shell = <span class="literal">NULL</span>,</span><br><span class="line">            <span class="comment">//调用su --command cmd 时的cmd</span></span><br><span class="line">            .command = <span class="literal">NULL</span>,</span><br><span class="line">            .argv = argv,</span><br><span class="line">            .argc = argc,</span><br><span class="line">            <span class="comment">//未解析argv参数的开始位置</span></span><br><span class="line">            .optind = <span class="number">0</span>,</span><br><span class="line">            <span class="comment">//目标调用者uid对应的用户名</span></span><br><span class="line">            .name = <span class="string">""</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        .user = &#123;</span><br><span class="line">            <span class="comment">//用户id</span></span><br><span class="line">            .android_user_id = <span class="number">0</span>,</span><br><span class="line">            .multiuser_mode = MULTIUSER_MODE_OWNER_ONLY,</span><br><span class="line">            <span class="comment">//存储Policy的DB路径，默认是"/data/data/com.koushikdutta.superuser/databases/su.sqlite"</span></span><br><span class="line">            .database_path = REQUESTOR_DATA_PATH REQUESTOR_DATABASE_PATH,</span><br><span class="line">            <span class="comment">//superuser的路径，默认是"/data/data/com.koushikdutta.superuser"</span></span><br><span class="line">            .base_path = REQUESTOR_DATA_PATH REQUESTOR</span><br><span class="line">        &#125;,</span><br><span class="line">        .bind = &#123;</span><br><span class="line">            .from = <span class="string">""</span>,</span><br><span class="line">            .to = <span class="string">""</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        .init = <span class="string">""</span>,</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">su_context</span> <span class="title">ctx</span> = &#123;</span></span><br><span class="line">        <span class="comment">//su调用者的相关信息</span></span><br><span class="line">        .from = &#123;</span><br><span class="line">            <span class="comment">//进程id</span></span><br><span class="line">            .pid = <span class="number">-1</span>,</span><br><span class="line">            <span class="comment">//用户id</span></span><br><span class="line">            .uid = <span class="number">0</span>,</span><br><span class="line">            <span class="comment">//执行程序的路径</span></span><br><span class="line">            .bin = <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="comment">//传入的参数，从/proc/pid/cmdline获得</span></span><br><span class="line">            .args = <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="comment">//用户名字</span></span><br><span class="line">            .name = <span class="string">&quot;&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//目标调用者</span></span><br><span class="line">        .to = &#123;</span><br><span class="line">            .uid = AID_ROOT,</span><br><span class="line">            .login = <span class="number">0</span>,</span><br><span class="line">            .keepenv = <span class="number">0</span>,</span><br><span class="line">            <span class="comment">//通过哪个shell执行用户命令，默认是&quot;/system/bin/sh&quot;</span></span><br><span class="line">            .shell = <span class="literal">NULL</span>,</span><br><span class="line">            <span class="comment">//调用su --command cmd 时的cmd</span></span><br><span class="line">            .command = <span class="literal">NULL</span>,</span><br><span class="line">            .argv = argv,</span><br><span class="line">            .argc = argc,</span><br><span class="line">            <span class="comment">//未解析argv参数的开始位置</span></span><br><span class="line">            .optind = <span class="number">0</span>,</span><br><span class="line">            <span class="comment">//目标调用者uid对应的用户名</span></span><br><span class="line">            .name = <span class="string">&quot;&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        .user = &#123;</span><br><span class="line">            <span class="comment">//用户id</span></span><br><span class="line">            .android_user_id = <span class="number">0</span>,</span><br><span class="line">            .multiuser_mode = MULTIUSER_MODE_OWNER_ONLY,</span><br><span class="line">            <span class="comment">//存储Policy的DB路径，默认是&quot;/data/data/com.koushikdutta.superuser/databases/su.sqlite&quot;</span></span><br><span class="line">            .database_path = REQUESTOR_DATA_PATH REQUESTOR_DATABASE_PATH,</span><br><span class="line">            <span class="comment">//superuser的路径，默认是&quot;/data/data/com.koushikdutta.superuser&quot;</span></span><br><span class="line">            .base_path = REQUESTOR_DATA_PATH REQUESTOR</span><br><span class="line">        &#125;,</span><br><span class="line">        .bind = &#123;</span><br><span class="line">            .from = <span class="string">&quot;&quot;</span>,</span><br><span class="line">            .to = <span class="string">&quot;&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        .init = <span class="string">&quot;&quot;</span>,</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
 <p>su_context初始化之后，便会进行预先的条件检测。满足允许条件的会直接允许用户su的请求，满足拒绝条件的就退出。允许和拒绝对应的执行函数为<code>static __attribute__ ((noreturn)) void allow(struct su_context *ctx)</code>和<code>static __attribute__ ((noreturn)) void deny(struct su_context *ctx)</code>。allow函数会通过execvp执行一个sh。预先条件有：如果su调用者的uid是root就允许调用请求等。如果预先条件没有匹配，便会去查询DB中存储的Policy。查询Policy会返回三种结果：允许，拒绝，交互。如果是允许和拒绝，也会相应的调用allow和deny函数。在交互情况下，Daemon会新建一个socket，然后fork一个子进程。父亲进程等待socket的连接。子进程通过AM命令启动superuser的相关activity，并将socket等信息传递给activity。</p>
 <p>被启动的相关activity会去与socket建立连接，建立连接后Daemon会发送调用者pid，uid等信息。superuser收到这些信息后，会把这次请求的具体信息显示给用户。</p>
 <p><img src="https://res.cloudinary.com/crackdawn/image/upload/v1526813434/blog/b2_img_3.png" alt="su request"></p>
 <p>用户做出选择后，supersu会把用户决策信息发送给Daemon。然后判断用户的决策是否需要保存，如果需要保存的话，就保存到DB中。Daemon在收到用户的决策后用相应的执行allow和deny函数。在没有参数执行su的情况下，allow会通过execvp执行”/system/bin/sh”。前面我们讲过Client和Daemon的STDIN和STDOUT是互通的，这样Client端的输入都会这个execvp启动的sh中执行，并在Client的STDOUT输出结果。</p>
 <h2 id="su何去何从"><a href="#su何去何从" class="headerlink" title="su何去何从"></a>su何去何从</h2><p>最近Chainfire宣布停止维护其全部root应用，而我们这里分析的superuser也是许久没有维护了。或许对于大多数android用户来说，root已经没有那么重要了。不管怎么样，抱着学习的态度看看superuser的源代码还是值得的。</p>
 
-      
     </div>
 
     
-
     
     
-    
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/superuser/" rel="tag"># superuser</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/01/编写JEB的python脚本/" rel="next" title="编写JEB的python脚本">
-                <i class="fa fa-chevron-left"></i> 编写JEB的python脚本
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/superuser/" rel="tag"># superuser</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/31/apriori algorithm/" rel="prev" title="Apriori关联分析算法">
-                Apriori关联分析算法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
         
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/04/01/%E7%BC%96%E5%86%99JEB%E7%9A%84python%E8%84%9A%E6%9C%AC/" rel="prev" title="编写JEB的python脚本">
+      <i class="fa fa-chevron-left"></i> 编写JEB的python脚本
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/31/apriori%20algorithm/" rel="next" title="Apriori关联分析算法">
+      Apriori关联分析算法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">thecrackdawn</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">3</span>
-                    <span class="site-state-item-name">categories</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">5</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">1.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装superuser"><span class="nav-number">2.</span> <span class="nav-text">安装superuser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#superuser实现"><span class="nav-number">3.</span> <span class="nav-text">superuser实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#su何去何从"><span class="nav-number">4.</span> <span class="nav-text">su何去何从</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">1.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85superuser"><span class="nav-number">2.</span> <span class="nav-text">安装superuser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#superuser%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">superuser实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#su%E4%BD%95%E5%8E%BB%E4%BD%95%E4%BB%8E"><span class="nav-number">4.</span> <span class="nav-text">su何去何从</span></a></li></ol></div>
       </div>
-    </main>
+      <!--/noindex-->
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate"> 
-    <i class="fa fa-thecrackofdawn"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">原创文章遵循 <a target="_blank" rel="external nofollow" href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en"><b>《署名-非商业性使用-相同方式共享 3.0 未本地化版本 (CC BY-NC-SA 3.0)》</b></a>协议</span>
-
-  
-
-  
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">thecrackdawn</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
 </div>
 
 
 
+      </div>
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+      </div>
+    </main>
 
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
+        
 
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="thecrackofdawn"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">原创文章遵循 <a target="_blank" rel="external nofollow" href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en"><b>《署名-非商业性使用-相同方式共享 3.0 未本地化版本 (CC BY-NC-SA 3.0)》</b></a>协议</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
 
         
 
@@ -695,107 +419,24 @@
 
 
 
-        
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
   </div>
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js"></script>
 
-
-
+<script src="/js/motion.js"></script>
 
 
+<script src="/js/schemes/muse.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
-
-
-
-  
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -811,26 +452,10 @@
 
 
 
-  
 
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
 
   
 
